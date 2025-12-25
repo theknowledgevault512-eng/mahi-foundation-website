@@ -343,6 +343,11 @@
   <div class="watermark">M A H I</div>
 
   <script>
+    document.getElementById("memberForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+});
+    fetch("https://mahi-backend-production.up.railway.app/", { ... })
+
     // small helpers & accessibility tweaks
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -418,7 +423,7 @@
           const existing = JSON.parse(localStorage.getItem('mahi_applications') || '[]');
           existing.push(payload);
           localStorage.setItem('mahi_applications', JSON.stringify(existing));
-          showMessage('ok', 'We could not reach the server — your application is saved locally. Please email us at YOUR_CONTACT_EMAIL with subject "Application" and we will retrieve it.');
+          showMessage('ok', 'We could not reach the server — your application is saved locally. Please email us at themahifoundation0@gmail.com with subject "Application" and we will retrieve it.');
         }
       } catch (err){
         // store locally if network error
@@ -441,3 +446,4 @@
   </script>
 </body>
 </html>
+
