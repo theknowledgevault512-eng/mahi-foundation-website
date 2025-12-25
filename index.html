@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Mahi Foundation — Empowering Youth</title>
+  <meta name="description" content="The Mahi Foundation — youth-led initiative inspired by Iqbal's 'Mahi'. Join us to lead, learn and serve. Apply to become a member." />
+  <meta property="og:title" content="The Mahi Foundation" />
+  <meta property="og:description" content="Youth leadership, skills, and social impact — join The Mahi Foundation today." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1220; /* deep navy */
+      --card:#071021;
+      --muted:#bfc8d3;
+      --gold:#D4AF37;
+      --white:#F8F7F5;
+      --accent: rgba(212,175,55,0.08);
+      --glass: rgba(255,255,255,0.03);
+      --radius: 14px;
+      --max-width:1100px;
+      --transition: 220ms cubic-bezier(.2,.9,.3,1);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, var(--bg) 0%, #081427 60%);
+      color:var(--muted);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.55;
+    }
+
+    .container{
+      max-width:var(--max-width);
+      margin:48px auto;
+      padding:32px;
+    }
+
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:32px;
+    }
+
+    .brand{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      text-decoration:none;
+      color:var(--white);
+    }
+
+    .brand-logo{
+      width:56px;height:56px;border-radius:12px;
+      background:linear-gradient(135deg, rgba(212,175,55,0.12), rgba(212,175,55,0.05));
+      display:flex;align-items:center;justify-content:center;
+      box-shadow: 0 6px 18px rgba(2,8,23,0.6);
+      font-family:"Playfair Display", serif;
+      color:var(--gold);
+      font-weight:700;
+      letter-spacing:0.6px;
+      font-size:20px;
+    }
+
+    .brand h1{margin:0;font-family:"Playfair Display", serif;font-size:18px;color:var(--white);line-height:1}
+    .brand p{margin:0;font-size:12px;color:var(--muted)}
+
+    nav{display:flex;gap:16px;align-items:center}
+    .nav-link{
+      color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;padding:8px 12px;border-radius:10px;
+      transition:var(--transition);
+    }
+    .nav-link:hover{background:var(--glass);color:var(--white)}
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:28px;
+      align-items:center;
+      margin-bottom:28px;
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:var(--radius);
+      padding:28px;
+      box-shadow: 0 8px 30px rgba(3,8,18,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .kicker{
+      display:inline-block;font-weight:700;color:var(--gold);letter-spacing:0.6px;font-size:12px;padding:6px 10px;border-radius:999px;background:linear-gradient(90deg, rgba(212,175,55,0.06), rgba(212,175,55,0.02));
+      margin-bottom:12px;
+    }
+
+    h2{font-family:"Playfair Display", serif;color:var(--white);margin:0 0 8px 0;font-size:32px}
+    p.lead{color:var(--muted);margin:0 0 16px 0}
+
+    .cta{
+      display:flex;gap:12px;margin-top:18px;flex-wrap:wrap;
+    }
+
+    .btn{
+      background:transparent;border:1px solid rgba(212,175,55,0.14);color:var(--white);padding:10px 16px;border-radius:12px;font-weight:600;
+      text-decoration:none;display:inline-flex;align-items:center;gap:10px;cursor:pointer;transition:var(--transition);
+    }
+    .btn-primary{
+      background:linear-gradient(90deg,var(--gold), #B88F2B);
+      color:#081226;border: 0;
+      box-shadow: 0 10px 30px rgba(212,175,55,0.12);
+    }
+    .btn:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(2,8,23,0.6)}
+
+    /* features */
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+    .feature{background:rgba(255,255,255,0.02);padding:14px;border-radius:10px}
+    .feature h4{margin:0 0 8px 0;color:var(--white);font-size:16px}
+    .feature p{margin:0;color:var(--muted);font-size:13px}
+
+    /* right column (form) */
+    form {display:flex;flex-direction:column;gap:12px}
+    label{font-size:13px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+    input[type="text"], input[type="email"], input[type="tel"], textarea, select{
+      background:transparent;border:1px solid rgba(255,255,255,0.06);padding:12px;border-radius:10px;color:var(--white);outline:none;font-size:14px;
+    }
+    input:focus, textarea:focus, select:focus{border-color:var(--gold);box-shadow:0 6px 18px rgba(212,175,55,0.06)}
+    textarea{min-height:120px;resize:vertical}
+
+    .muted-note{font-size:12px;color:rgba(191,200,211,0.8)}
+
+    /* sections */
+    section{margin:44px 0}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .directorates{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .director{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008));padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+    .director h3{margin:0;color:var(--white);font-size:16px}
+    .director p{margin:6px 0 0 0;color:var(--muted);font-size:13px}
+
+    footer{margin-top:44px;padding:20px 0;border-top:1px solid rgba(255,255,255,0.03);display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:14px}
+    .socials{display:flex;gap:12px}
+    .chip{background:rgba(255,255,255,0.02);padding:8px 12px;border-radius:999px;color:var(--muted);font-weight:600;border:1px solid rgba(255,255,255,0.02)}
+
+    /* small screens */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .features{grid-template-columns:repeat(2,1fr)}
+      .directorates{grid-template-columns:repeat(2,1fr)}
+      .grid-2{grid-template-columns:1fr}
+    }
+
+    @media (max-width:520px){
+      .features{grid-template-columns:1fr}
+      .directorates{grid-template-columns:1fr}
+      .brand h1{font-size:16px}
+      h2{font-size:24px}
+    }
+
+    /* subtle decorative flourish */
+    .watermark{
+      position:fixed; right: -4vw; bottom: -8vh; opacity:0.035; font-size:260px; transform:rotate(-16deg);
+      font-family:"Playfair Display",serif;color:var(--white);pointer-events:none;user-select:none;
+    }
+    .success{
+      background:linear-gradient(90deg, rgba(34,128,96,0.14), rgba(34,128,96,0.08));
+      border-left:4px solid rgba(34,128,96,0.9); padding:12px;border-radius:10px;color:#d9f7e6;font-weight:600;
+    }
+    .error{background:linear-gradient(90deg, rgba(200,60,60,0.06), rgba(200,60,60,0.03));border-left:4px solid rgba(200,60,60,0.9);padding:12px;border-radius:10px;color:#ffd7d7;font-weight:600}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a class="brand" href="#" aria-label="The Mahi Foundation home">
+        <img src="The Mahi Foundation.jpg" alt="The Mahi Foundation" style="width:10%; height:10%;">
+        <div>
+          <h1>The Mahi Foundation</h1>
+          <p>Freedom. Leadership. Service.</p>
+        </div>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#directorates">Directorates</a>
+        <a class="nav-link" href="#apply">Apply</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="card" role="region" aria-labelledby="hero-title">
+          <span class="kicker">The Mahi Foundation</span>
+          <h2 id="hero-title">Youth-led. Iqbal-inspired. Freedom in action.</h2>
+          <p class="lead">We empower young minds across Pakistan with leadership programs, community initiatives, and skill development. Join us to build a generation that leads with courage and purpose.</p>
+
+          <div class="features" aria-hidden="false">
+            <div class="feature">
+              <h4>Leadership Labs</h4>
+              <p>Workshops, MUNs and training that sharpen public speaking and civic leadership.</p>
+            </div>
+            <div class="feature">
+              <h4>Community Service</h4>
+              <p>Local projects that create measurable impact — clean drives, tutoring & more.</p>
+            </div>
+            <div class="feature">
+              <h4>Creative Media</h4>
+              <p>Design, storytelling and digital campaigns powered by youth voices.</p>
+            </div>
+          </div>
+
+          <div class="cta" role="group" aria-label="primary call to actions">
+            <a class="btn btn-primary" href="#apply">Apply to Join</a>
+            <a class="btn" href="#directorates">See Directorates</a>
+          </div>
+        </div>
+
+        <aside class="card" aria-labelledby="apply-heading">
+          <h3 id="apply-heading" style="color:var(--white);margin:0 0 6px 0;font-size:18px">Apply to Join — Recruitment Form</h3>
+          <p class="muted-note" style="margin:0 0 12px 0">Fill this form to submit your application. We review every application within 7–14 days.</p>
+
+          <form id="applyForm" novalidate>
+            <div>
+              <label for="fullname">Full name <span style="color:var(--gold);font-weight:700">*</span></label>
+              <input id="fullname" name="fullname" type="text" placeholder="e.g. Mohammad Ali" required minlength="3" />
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+              <div>
+                <label for="age">Age</label>
+                <input id="age" name="age" type="text" inputmode="numeric" placeholder="16" pattern="\\d{1,2}" />
+              </div>
+              <div>
+                <label for="city">City</label>
+                <input id="city" name="city" type="text" placeholder="Gilgit" />
+              </div>
+            </div>
+
+            <div>
+              <label for="email">Email <span style="color:var(--gold);font-weight:700">*</span></label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required />
+            </div>
+
+            <div>
+              <label for="phone">WhatsApp / Phone</label>
+              <input id="phone" name="phone" type="tel" placeholder="+92 3xx xxxxxxx" />
+            </div>
+
+            <div>
+              <label for="directorate">Choose Directorate</label>
+              <select id="directorate" name="directorate" aria-label="Choose a directorate">
+                <option value="">— Select —</option>
+                <option>Management</option>
+                <option>Information Technology(IT)</option>
+                <option>Media & Communications</option>
+                <option>Design & Creativity</option>
+                <option>Registrar</option>
+                <option>Marketing</option>
+
+              </select>
+            </div>
+
+            <div>
+              <label for="skills">Skills / Experience</label>
+              <textarea id="skills" name="skills" placeholder="Tell us about your skills and any past experience (max 300 characters)"></textarea>
+            </div>
+
+            <div>
+              <label for="why">Why do you want to join? <span style="color:var(--gold);font-weight:700">*</span></label>
+              <textarea id="why" name="why" required placeholder="In 1–2 lines, tell us why you'd like to be part of The Mahi Foundation." maxlength="500"></textarea>
+            </div>
+
+            <div id="messageBox" aria-live="polite"></div>
+
+            <div style="display:flex;gap:10px;align-items:center;margin-top:6px">
+              <button type="submit" class="btn btn-primary" id="submitBtn">Submit Application</button>
+              <a class="btn" href="mailto:YOUR_CONTACT_EMAIL?subject=Application%20-%20The%20Mahi%20Foundation" id="mailtoFallback">Email Application</a>
+            </div>
+
+            <p class="muted-note" style="margin-top:12px">By submitting you agree to our Code of Conduct. We will keep your data confidential.</p>
+          </form>
+        </aside>
+      </section>
+
+      <section id="about" class="card" aria-labelledby="about-heading">
+        <h3 id="about-heading" style="color:var(--white);margin:0 0 6px 0;font-size:20px">About The Mahi Foundation</h3>
+        <p style="margin:6px 0 0 0;color:var(--muted)">The Mahi Foundation is a youth-led, non-political initiative inspired by Allama Iqbal’s symbol of <em>Mahi</em> (the fish): a metaphor for freedom, bold thought, and the courage to roam beyond limits. We run leadership programs, community projects and skill workshops across Pakistan — created by students, for students.</p>
+      </section>
+
+      <section id="directorates" class="card" aria-labelledby="dir-heading">
+        <h3 id="dir-heading" style="color:var(--white);margin:0 0 14px 0;font-size:20px">Directorates</h3>
+        <div class="directorates" role="list">
+          <div class="director" role="listitem"><h3>Management</h3><p>Plan and run events, summits and competitions.</p></div>
+          <div class="director" role="listitem"><h3>Media & Communications</h3><p>Content, social campaigns, PR and storytelling.</p></div>
+          <div class="director" role="listitem"><h3>Design & Creativity</h3><p>Graphic design, publications and creative projects.</p></div>
+          <div class="director" role="listitem"><h3>Marketing</h3><p>Brand promotion, outreach campaigns, and strategic public engagement.</p></div>
+          <div class="director" role="listitem"><h3>Registrar</h3><p>Membership management, verification, and organizational record-keeping..</p></div>
+          <div class="director" role="listitem"><h3>IT & Digital Innovation</h3><p>Website, automation and digital tools to scale the Foundation.</p></div>
+        </div>
+      </section>
+
+      <section id="contact" class="card grid-2" aria-labelledby="contact-heading">
+        <div>
+          <h3 id="contact-heading" style="color:var(--white);margin:0 0 6px 0;font-size:20px">Contact</h3>
+          <p class="muted-note" style="margin:0 0 12px 0">Questions? Partnership ideas? Want to speak at our events? Reach out.</p>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div class="chip">Email: <strong style="margin-left:8px;color:var(--white)">themahifoundation0@gmail.com</strong></div>
+            <div class="chip">Instagram: <strong style="margin-left:8px;color:var(--white)">@the_mahi_foundation</strong></div>
+            <div class="chip">Location: <strong style="margin-left:8px;color:var(--white)">Gilgit Baltistan</strong></div>
+          </div>
+        </div>
+
+        <div>
+          <h3 style="color:var(--white);margin:0 0 6px 0;font-size:20px">Quick Links</h3>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+            <a class="nav-link" href="#apply">Apply</a>
+            <a class="nav-link" href="#directorates">Directorates</a>
+            <a class="nav-link" href="#about">About</a>
+            <a class="nav-link" href="#contact">Contact</a>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div>&copy; <span id="year"></span> The Mahi Foundation — All rights reserved.</div>
+        <div class="socials" aria-hidden="true">
+          <div class="chip">IG</div>
+          <div class="chip">X</div>
+          <div class="chip">YT</div>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <div class="watermark">M A H I</div>
+
+  <script>
+    // small helpers & accessibility tweaks
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const form = document.getElementById('applyForm');
+    const messageBox = document.getElementById('messageBox');
+    const submitBtn = document.getElementById('submitBtn');
+
+    function showMessage(type, text){
+      messageBox.innerHTML = '<div class="'+(type==='ok'?'success':'error')+'">'+text+'</div>';
+      setTimeout(()=> {
+        // keep success for 6 seconds, error stays for 8
+        if(type==='ok') messageBox.innerHTML = '';
+      }, (type==='ok'?6000:8000));
+    }
+
+    function validateForm(data){
+      if(!data.get('fullname') || data.get('fullname').trim().length < 3){
+        return 'Please enter a valid full name (min 3 characters).';
+      }
+      if(!data.get('email')){
+        return 'Please provide your email address.';
+      }
+      if(!data.get('why') || data.get('why').trim().length < 10){
+        return 'Tell us briefly why you want to join (at least 10 characters).';
+      }
+      return '';
+    }
+
+    async function handleSubmit(ev){
+      ev.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting…';
+
+      const formData = new FormData(form);
+      const validationError = validateForm(formData);
+      if(validationError){
+        showMessage('error', validationError);
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Application';
+        return;
+      }
+
+      // Prepare payload
+      const payload = {
+        fullname: formData.get('fullname'),
+        age: formData.get('age'),
+        city: formData.get('city'),
+        email: formData.get('email'),
+        phone: formData.get('phone'),
+        directorate: formData.get('directorate'),
+        skills: formData.get('skills'),
+        why: formData.get('why'),
+        submittedAt: new Date().toISOString()
+      };
+
+      try {
+        // ====== IMPORTANT ======
+        // Replace the URL below with your real endpoint (Formspree, Formsubmit, Zapier webhook or your server)
+        // Example (Formspree): https://formspree.io/f/YOUR_FORM_ID
+        const ENDPOINT = 'https://mahi-backend-production.up.railway.app/'; // <-- change this
+
+        const res = await fetch(ENDPOINT, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(payload)
+        });
+
+        if(res.ok){
+          showMessage('ok', 'Thank you! Your application has been submitted. We will contact you within 7–14 days.');
+          form.reset();
+        } else {
+          // fallback: keep a local copy in localStorage & show instruction
+          const existing = JSON.parse(localStorage.getItem('mahi_applications') || '[]');
+          existing.push(payload);
+          localStorage.setItem('mahi_applications', JSON.stringify(existing));
+          showMessage('ok', 'We could not reach the server — your application is saved locally. Please email us at YOUR_CONTACT_EMAIL with subject "Application" and we will retrieve it.');
+        }
+      } catch (err){
+        // store locally if network error
+        const existing = JSON.parse(localStorage.getItem('mahi_applications') || '[]');
+        existing.push(payload);
+        localStorage.setItem('mahi_applications', JSON.stringify(existing));
+        showMessage('ok', 'No server connection. Your application is saved locally and you can also email it to YOUR_CONTACT_EMAIL.');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Application';
+      }
+    }
+
+    form.addEventListener('submit', handleSubmit);
+
+    // Accessibility: move focus to messageBox on early errors
+    messageBox.addEventListener('DOMNodeInserted', function(){
+      messageBox.querySelector('div')?.focus?.();
+    });
+  </script>
+</body>
+</html>
