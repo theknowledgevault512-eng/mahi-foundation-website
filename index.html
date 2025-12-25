@@ -342,12 +342,7 @@
 
   <div class="watermark">M A H I</div>
 
-  <script>
-    document.getElementById("memberForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-});
-    fetch("https://mahi-backend-production.up.railway.app/", { ... })
-
+  <script> 
     // small helpers & accessibility tweaks
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -430,7 +425,7 @@
         const existing = JSON.parse(localStorage.getItem('mahi_applications') || '[]');
         existing.push(payload);
         localStorage.setItem('mahi_applications', JSON.stringify(existing));
-        showMessage('ok', 'No server connection. Your application is saved locally and you can also email it to YOUR_CONTACT_EMAIL.');
+        showMessage('ok', 'No server connection. Your application is saved locally and you can also email it to themahifoundation0@gmail.com.');
       } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Submit Application';
@@ -446,4 +441,5 @@
   </script>
 </body>
 </html>
+
 
