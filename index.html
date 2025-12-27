@@ -342,104 +342,66 @@
 
   <div class="watermark">M A H I</div>
 
-  <script> 
-    // small helpers & accessibility tweaks
-    document.getElementById('year').textContent = new Date().getFullYear();
+ <script>
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-    const form = document.getElementById('applyForm');
-    const messageBox = document.getElementById('messageBox');
-    const submitBtn = document.getElementById('submitBtn');
+  const form = document.getElementById('applyForm');
+  const messageBox = document.getElementById('messageBox');
+  const submitBtn = document.getElementById('submitBtn');
 
-    function showMessage(type, text){
-      messageBox.innerHTML = '<div class="'+(type==='ok'?'success':'error')+'">'+text+'</div>';
-      setTimeout(()=> {
-        // keep success for 6 seconds, error stays for 8
-        if(type==='ok') messageBox.innerHTML = '';
-      }, (type==='ok'?6000:8000));
-    }
+  function showMessage(type, text){
+    messageBox.innerHTML = `<div class="${type === 'ok' ? 'success' : 'error'}">${text}</div>`;
+  }
 
-    function validateForm(data){
-      if(!data.get('fullname') || data.get('fullname').trim().length < 3){
-        return 'Please enter a valid full name (min 3 characters).';
-      }
-      if(!data.get('email')){
-        return 'Please provide your email address.';
-      }
-      if(!data.get('why') || data.get('why').trim().length < 10){
-        return 'Tell us briefly why you want to join (at least 10 characters).';
-      }
-      return '';
-    }
+  async function handleSubmit(ev){
+    ev.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting…';
 
-    async function handleSubmit(ev){
-      ev.preventDefault();
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Submitting…';
+    const formData = new FormData(form);
 
-      const formData = new FormData(form);
-      const validationError = validateForm(formData);
-      if(validationError){
-        showMessage('error', validationError);
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Submit Application';
-        return;
-      }
+    const payload = {
+      name: formData.get('fullname'),
+      email: formData.get('email'),
+      phone: formData.get('phone'),
+      age: formData.get('age'),
+      city: formData.get('city'),
+      directorate: formData.get('directorate'),
+      skills: formData.get('skills'),
+      motivation: formData.get('why')
+    };
 
-      // Prepare payload
-      const payload = {
-        fullname: formData.get('fullname'),
-        age: formData.get('age'),
-        city: formData.get('city'),
-        email: formData.get('email'),
-        phone: formData.get('phone'),
-        directorate: formData.get('directorate'),
-        skills: formData.get('skills'),
-        why: formData.get('why'),
-        submittedAt: new Date().toISOString()
-      };
-
-      try {
-        // ====== IMPORTANT ======
-        // Replace the URL below with your real endpoint (Formspree, Formsubmit, Zapier webhook or your server)
-        // Example (Formspree): https://formspree.io/f/YOUR_FORM_ID
-        const ENDPOINT = 'https://mahi-backend-production.up.railway.app/'; // <-- change this
-
-        const res = await fetch(ENDPOINT, {
+    try {
+      const res = await fetch(
+        'https://mahi-backend-production.up.railway.app',
+        {
           method: 'POST',
-          headers: {'Content-Type': 'application/json'},
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
-        });
-
-        if(res.ok){
-          showMessage('ok', 'Thank you! Your application has been submitted. We will contact you within 7–14 days.');
-          form.reset();
-        } else {
-          // fallback: keep a local copy in localStorage & show instruction
-          const existing = JSON.parse(localStorage.getItem('mahi_applications') || '[]');
-          existing.push(payload);
-          localStorage.setItem('mahi_applications', JSON.stringify(existing));
-          showMessage('ok', 'We could not reach the server — your application is saved locally. Please email us at themahifoundation0@gmail.com with subject "Application" and we will retrieve it.');
         }
-      } catch (err){
-        // store locally if network error
-        const existing = JSON.parse(localStorage.getItem('mahi_applications') || '[]');
-        existing.push(payload);
-        localStorage.setItem('mahi_applications', JSON.stringify(existing));
-        showMessage('ok', 'No server connection. Your application is saved locally and you can also email it to themahifoundation0@gmail.com.');
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Submit Application';
+      );
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || 'Submission failed');
       }
+
+      showMessage('ok', 'Application submitted successfully.');
+      form.reset();
+
+    } catch (err) {
+      showMessage('error', err.message || 'Server error. Try again later.');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit Application';
     }
+  }
 
-    form.addEventListener('submit', handleSubmit);
-
-    // Accessibility: move focus to messageBox on early errors
-    messageBox.addEventListener('DOMNodeInserted', function(){
-      messageBox.querySelector('div')?.focus?.();
-    });
-  </script>
+  form.addEventListener('submit', handleSubmit);
+</script>
 </body>
 </html>
+
 
 
